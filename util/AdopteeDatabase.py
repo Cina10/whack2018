@@ -9,7 +9,7 @@ def create_tableadoptees():
 
 def create_tablebioparents():
     c.execute('CREATE TABLE IF NOT EXISTS BiologicalParents(Firstname TEXT, Lastname TEXT, Location TEXT, ChildBirthdate REAL, Race TEXT) ')
-    
+
 def data_adoptees():
     KeepGoing = 'y'
     while KeepGoing == 'y':
@@ -39,8 +39,15 @@ def data_bioparents():
         KeepGoing = input("Are there any more biological parents to account for?" + "\n")
         c.execute ("INSERT INTO BiologicalParents (Firstname, Lastname, Location, ChildBirthdate, Race) VALUES (?, ?, ?, ?, ?)",
                     (Firstname, Lastname, Location, ChildBirthdate, Race))
-        
+
     conn.commit()
+
+
+def add_parents(Firstname, Lastname, Location, ChildBirthdate, Race):
+    c.execute ("INSERT INTO BiologicalParents (Firstname, Lastname, Location, ChildBirthdate, Race) VALUES (?, ?, ?, ?, ?)",
+    (Firstname, Lastname, Location, ChildBirthdate, Race))
+    conn.commit()
+
 
 def comparison():
     LastnameAdoptees= c.execute('''SELECT Lastname FROM Adoptees''')
@@ -61,12 +68,8 @@ def comparison():
 
 
 
-
-create_tableadoptees()
-create_tablebioparents()
-data_adoptees()
-data_bioparents()
-
-
-
-
+add_parents("hi", "there", "hello", "world", "and")
+#create_tableadoptees()
+#create_tablebioparents()
+#data_adoptees()
+#data_bioparents()
